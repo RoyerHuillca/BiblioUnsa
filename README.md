@@ -9,15 +9,7 @@ Proyecto final de *Desarrollo de Software Orientado a Objetos*
 
 ## ejecutar
 
-**Windows (CMD o PowerShell)**
-```bat
-chcp 65001
-mkdir out
-javac -encoding UTF-8 -d out biblioteca\modelo\*.java biblioteca\servicio\*.java biblioteca\persistencia\*.java biblioteca\consola\*.java
-java -Dfile.encoding=UTF-8 -cp out biblioteca.consola.AppConsola
-```
-
-**VS Code**: abrir la carpeta del proyecto, abrir `biblioteca/consola/AppConsola.java` y pulsar *Run* sobre `main`.
+**Visual Studio Code**: abrir la carpeta del proyecto, abrir `biblioteca/consola/AppConsola.java` y pulsar *Run* sobre `main`.
 
 La primera vez se cargan datos de ejemplo. Al salir (opción 0) los datos se guardan en `datos/biblioteca.dat`.
 
