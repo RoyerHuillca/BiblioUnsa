@@ -92,13 +92,3 @@ biblioteca/
 test/            PruebasLogica, biblioteca/vista/PruebasVista y CapturasGrafico
 docs/            diagramas UML y capturas
 ```
-
-## Correspondencia con el UML
-- `Material` y `Usuario` son abstractas y sus subclases redefinen `obtenerTipo()`, `obtenerPlazoPrestamo()` y `obtenerLimitePrestamos()` (polimorfismo).
-- `Biblioteca` agrega materiales (`ArrayList`), usuarios (`HashMap<String, Usuario>`), préstamos y reservas (agregación).
-- `Prestamo` genera su `Multa` (composición). `Reporte` implementa `Exportable`.
-- En el UML el atributo se llama `año`; en el código es `anio` para evitar problemas de codificación.
-
-## Métodos de apoyo que no aparecen en el UML original
-`Biblioteca`: `buscarMaterialPorCodigo`, `prestamosActivosDe`, `deudaDe`, `pagarMultas`, `reservasPendientes`, getters, `hoy` y `setReloj`.
-`Reporte`: `cantidadPrestamos` y `generarTexto`. `Prestamo`: `estaDevuelto`. Clase `Respaldo` (copias de seguridad).
