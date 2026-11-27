@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-// Copias de seguridad: guarda y restaura toda la biblioteca con serialización de objetos.
+/** Copias de seguridad: guarda y restaura toda la biblioteca con serialización de objetos. */
 public class Respaldo {
 
     public static void guardar(Biblioteca biblioteca, String ruta) throws IOException {

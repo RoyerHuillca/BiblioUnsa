@@ -6,7 +6,7 @@ import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
 
-// Pruebas de la lógica de negocio
+/** Pruebas de la lógica de negocio (sin JUnit): ejecutar con ./probar.sh */
 public class PruebasLogica {
     static int ok = 0, fallos = 0;
 
@@ -15,7 +15,7 @@ public class PruebasLogica {
         else { fallos++; System.out.println("  FALLO " + nombre); }
     }
 
-    // true si la operación fue rechazada con BibliotecaException.
+    /** true si la operación fue rechazada con BibliotecaException. */
     static boolean rechaza(Runnable r) {
         try { r.run(); return false; } catch (BibliotecaException e) { return true; }
     }

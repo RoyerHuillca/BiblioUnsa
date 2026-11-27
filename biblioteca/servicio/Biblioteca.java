@@ -11,9 +11,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.function.Supplier;
 
-//Clase principal. Agregación: la biblioteca CONTIENE materiales, usuarios, préstamos y reservas.
-//Los materiales se guardan en un ArrayList y los usuarios en un HashMap (clave: código).
-
+/**
+ * Clase principal. Agregación: la biblioteca CONTIENE materiales, usuarios, préstamos y reservas.
+ * Los materiales se guardan en un ArrayList y los usuarios en un HashMap (clave: código).
+ */
 public class Biblioteca implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -26,7 +27,7 @@ public class Biblioteca implements Serializable {
 
     public Biblioteca(String nombre) { this.nombre = nombre; }
 
-    // Materiales
+    // ======================= Materiales =======================
     public void registrarMaterial(Material m) {
         if (m.getCodigo() == null || m.getCodigo().isBlank())
             throw new BibliotecaException("El código del material es obligatorio.");
@@ -37,7 +38,7 @@ public class Biblioteca implements Serializable {
         materiales.add(m);
     }
 
-    //Busca por título, autor o código sin importar mayúsculas ni tildes.
+    /** Busca por título, autor o código (sin importar mayúsculas ni tildes). */
     public ArrayList<Material> buscarMaterial(String criterio) {
         String q = normalizar(criterio);
         ArrayList<Material> encontrados = new ArrayList<>();
@@ -57,7 +58,7 @@ public class Biblioteca implements Serializable {
         return true;
     }
 
-    //Da de baja un material. Devuelve false si no existe o si está prestado.
+    /** Da de baja un material. Devuelve false si no existe o si está prestado. */
     public boolean eliminarMaterial(String codigo) {
         Material m = buscarMaterialPorCodigo(codigo);
         if (m == null || !m.isDisponible()) return false;
@@ -73,7 +74,7 @@ public class Biblioteca implements Serializable {
         return null;
     }
 
-    // Usuarios
+    // ======================= Usuarios =======================
     public void registrarUsuario(Usuario u) {
         if (u.getCodigo() == null || u.getCodigo().isBlank())
             throw new BibliotecaException("El código del usuario es obligatorio.");
@@ -88,7 +89,7 @@ public class Biblioteca implements Serializable {
         return codigo == null ? null : usuarios.get(codigo.trim());
     }
 
-    // Préstamos
+    // ======================= Préstamos =======================
     public Prestamo registrarPrestamo(String codUsuario, String codMaterial) {
         Usuario u = exigirUsuario(codUsuario);
         Material m = exigirMaterial(codMaterial);
@@ -111,7 +112,7 @@ public class Biblioteca implements Serializable {
         return p;
     }
 
-    // Registra la devolución del material. Devuelve la multa generada o null si llegó a tiempo
+    /** Registra la devolución del material. Devuelve la multa generada o null si llegó a tiempo. */
     public Multa registrarDevolucion(String codMaterial) {
         Material m = exigirMaterial(codMaterial);
         for (Prestamo p : prestamos) {
@@ -145,14 +146,14 @@ public class Biblioteca implements Serializable {
         return vencidos;
     }
 
-    // Apoyo
+    // ======================= Apoyo (no están en el UML) =======================
     public ArrayList<Prestamo> prestamosActivosDe(Usuario u) {
         ArrayList<Prestamo> activos = new ArrayList<>();
         for (Prestamo p : prestamos) if (p.getUsuario() == u && !p.estaDevuelto()) activos.add(p);
         return activos;
     }
 
-    //Suma de las multas no pagadas del usuario.
+    /** Suma de las multas no pagadas del usuario. */
     public double deudaDe(Usuario u) {
         double total = 0;
         for (Prestamo p : prestamos) {
@@ -162,7 +163,7 @@ public class Biblioteca implements Serializable {
         return total;
     }
 
-    //Marca como pagadas todas las multas del usuario y devuelve el monto pagado.
+    /** Marca como pagadas todas las multas del usuario y devuelve el monto pagado. */
     public double pagarMultas(String codUsuario) {
         Usuario u = exigirUsuario(codUsuario);
         double total = deudaDe(u);
@@ -179,15 +180,9 @@ public class Biblioteca implements Serializable {
     }
 
     public String getNombre() { return nombre; }
-    public ArrayList<Material> getMateriales() { 
-        return materiales; 
-    }
-    public ArrayList<Prestamo> getPrestamos() { 
-        return prestamos; 
-    }
-    public ArrayList<Reserva> getReservas() { 
-        return reservas; 
-    }
+    public ArrayList<Material> getMateriales() { return materiales; }
+    public ArrayList<Prestamo> getPrestamos() { return prestamos; }
+    public ArrayList<Reserva> getReservas() { return reservas; }
 
     public List<Usuario> getUsuarios() {
         List<Usuario> lista = new ArrayList<>(usuarios.values());
@@ -198,7 +193,7 @@ public class Biblioteca implements Serializable {
     public LocalDate hoy() { return reloj == null ? LocalDate.now() : reloj.get(); }
     public void setReloj(Supplier<LocalDate> reloj) { this.reloj = reloj; }
 
-    // Privados
+    // ======================= Privados =======================
     private Reserva primeraReservaPendiente(Material m) {
         for (Reserva r : reservas)
             if (r.getMaterial() == m && r.getEstado() == EstadoReserva.PENDIENTE) return r;

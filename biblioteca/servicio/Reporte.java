@@ -9,13 +9,13 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-// Genera los reportes a partir de los datos de la biblioteca y los exporta a un archivo de texto.
+/** Genera los reportes a partir de los datos de la biblioteca y los exporta a un archivo de texto. */
 public class Reporte implements Exportable {
     private Biblioteca biblioteca;
 
     public Reporte(Biblioteca biblioteca) { this.biblioteca = biblioteca; }
 
-    // Materiales prestados al menos una vez, del más prestado al menos prestado. */
+    /** Materiales prestados al menos una vez, del más prestado al menos prestado. */
     public List<Material> librosMasPrestados() {
         List<Material> lista = new ArrayList<>();
         for (Material m : biblioteca.getMateriales()) if (cantidadPrestamos(m) > 0) lista.add(m);

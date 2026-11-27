@@ -5,20 +5,14 @@ public class Libro extends Material {
     private String isbn;
     private String editorial;
 
-    public Libro(String codigo, String titulo, String autor, int año, String isbn, String editorial) {
-        super(codigo, titulo, autor, año);
+    public Libro(String codigo, String titulo, String autor, int anio, String isbn, String editorial) {
+        super(codigo, titulo, autor, anio);
         this.isbn = isbn;
         this.editorial = editorial;
     }
 
-    @Override public String obtenerTipo() { 
-        return "Libro"; 
-    }
+    @Override public String obtenerTipo() { return "Libro"; }
 
-    public String getIsbn() { 
-        return isbn; 
-    }
-    public String getEditorial() { 
-        return editorial; 
-    }
+    public String getIsbn() { return isbn; }
+    public String getEditorial() { return editorial; }
 }

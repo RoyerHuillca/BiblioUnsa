@@ -175,6 +175,46 @@ public class PruebasVista {
         verificar("exporta el reporte a .txt", txt.exists() && txt.length() > 0 && salida.ultimoInfo().contains("exportado"));
         txt.delete();
 
+        System.out.println("Base de datos (menú Archivo)");
+        Biblioteca antes = sesion.biblioteca;
+        java.io.File bd = new java.io.File(AccionesBD.ARCHIVO_BD);
+        bd.delete();
+        int avisosAntes = salida.avisos.size();
+        AccionesBD.guardar(sesion, null);
+        if (biblioteca.persistencia.BaseDatos.hayDriver()) {
+            verificar("con el driver: guardar informa y crea el archivo .db", salida.ultimoInfo().contains("guardados") && bd.exists());
+            AccionesBD.cargar(sesion, null);
+            verificar("con el driver: cargar reemplaza la biblioteca con los mismos datos", sesion.biblioteca != antes
+                    && sesion.biblioteca.getMateriales().size() == antes.getMateriales().size()
+                    && sesion.biblioteca.getUsuarios().size() == antes.getUsuarios().size());
+            bd.delete();
+        } else {
+            verificar("sin el driver: guardar muestra un aviso que menciona el driver", salida.avisos.size() == avisosAntes + 1
+                    && salida.ultimoAviso().contains("driver"));
+            AccionesBD.cargar(sesion, null);
+            verificar("sin el driver: cargar avisa y conserva los datos actuales", salida.avisos.size() == avisosAntes + 2
+                    && sesion.biblioteca == antes);
+            verificar("sin el driver: no se crea ningún archivo .db", !bd.exists());
+        }
+        BarraMenu barra = new BarraMenu(sesion, null, () -> { });
+        verificar("el menú Archivo tiene las opciones de base de datos", barra.itemGuardarBD.getText().contains("SQLite")
+                && barra.itemCargarBD.getText().contains("SQLite") && barra.getMenuCount() == 2);
+        int infosAntes = salida.info.size(), avisosMenu = salida.avisos.size();
+        barra.itemGuardarBD.doClick();
+        boolean reaccion = biblioteca.persistencia.BaseDatos.hayDriver() ? salida.info.size() == infosAntes + 1
+                : salida.avisos.size() == avisosMenu + 1;
+        verificar("pulsar 'Guardar en base de datos' responde con un mensaje", reaccion);
+        bd.delete();
+        barra.itemGuardar.doClick();
+        verificar("pulsar 'Guardar ahora' guarda en datos/biblioteca.dat", salida.ultimoInfo().contains("biblioteca.dat")
+                && new java.io.File(BarraMenu.ARCHIVO_DATOS).exists());
+        new java.io.File(BarraMenu.ARCHIVO_DATOS).delete();
+        salida.confirmacion = false;
+        int avisosPrevios = salida.avisos.size();
+        AccionesBD.cargar(sesion, null);
+        salida.confirmacion = true;
+        verificar("si no se confirma, cargar no hace nada", salida.avisos.size() == avisosPrevios && sesion.biblioteca == antes);
+
         System.out.println("\nResultado: " + ok + " correctas, " + fallos + " fallos");
         System.exit(fallos == 0 ? 0 : 1);
     }

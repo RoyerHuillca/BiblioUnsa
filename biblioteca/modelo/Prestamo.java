@@ -13,7 +13,7 @@ public class Prestamo implements Serializable {
     private EstadoPrestamo estado;
     private Material material;
     private Usuario usuario;
-    private Multa multa;          // composición
+    private Multa multa;          // composición: 0..1
 
     public Prestamo(Usuario usuario, Material material, LocalDate fechaPrestamo, LocalDate fechaVencimiento) {
         this.usuario = usuario;
@@ -23,14 +23,14 @@ public class Prestamo implements Serializable {
         this.estado = EstadoPrestamo.ACTIVO;
     }
 
-    // Registra la devolución; si hubo retraso genera la multa.
+    /** Registra la devolución; si hubo retraso genera la multa. */
     public void registrarDevolucion(LocalDate fecha) {
         this.fechaDevolucion = fecha;
         this.estado = EstadoPrestamo.DEVUELTO;
         if (diasRetraso(fecha) > 0) generarMulta(fecha);
     }
 
-    // Indica si el préstamo no devuelto ya pasó su fecha de vencimiento y lo marca como VENCIDO.
+    /** Indica si el préstamo no devuelto ya pasó su fecha de vencimiento (y lo marca como VENCIDO). */
     public boolean estaVencido(LocalDate hoy) {
         if (estado == EstadoPrestamo.DEVUELTO) return false;
         if (hoy.isAfter(fechaVencimiento)) {
@@ -50,29 +50,13 @@ public class Prestamo implements Serializable {
         return multa;
     }
 
-    public boolean estaDevuelto() { 
-        return estado == EstadoPrestamo.DEVUELTO; 
-    }
+    public boolean estaDevuelto() { return estado == EstadoPrestamo.DEVUELTO; }
 
-    public LocalDate getFechaPrestamo() { 
-        return fechaPrestamo; 
-    }
-    public LocalDate getFechaVencimiento() { 
-        return fechaVencimiento; 
-    }
-    public LocalDate getFechaDevolucion() { 
-        return fechaDevolucion; 
-    }
-    public EstadoPrestamo getEstado() { 
-        return estado; 
-    }
-    public Material getMaterial() { 
-        return material; 
-    }
-    public Usuario getUsuario() { 
-        return usuario; 
-    }
-    public Multa getMulta() { 
-        return multa; 
-    }
+    public LocalDate getFechaPrestamo() { return fechaPrestamo; }
+    public LocalDate getFechaVencimiento() { return fechaVencimiento; }
+    public LocalDate getFechaDevolucion() { return fechaDevolucion; }
+    public EstadoPrestamo getEstado() { return estado; }
+    public Material getMaterial() { return material; }
+    public Usuario getUsuario() { return usuario; }
+    public Multa getMulta() { return multa; }
 }

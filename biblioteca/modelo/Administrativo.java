@@ -9,20 +9,9 @@ public class Administrativo extends Usuario {
         this.area = area;
     }
 
-    @Override 
-    public int obtenerPlazoPrestamo() { 
-        return 10; 
-    }
-    @Override 
-    public int obtenerLimitePrestamos() { 
-        return 4; 
-    }
-    @Override 
-    public String obtenerTipo() { 
-        return "Administrativo"; 
-    }
+    @Override public int obtenerPlazoPrestamo() { return 10; }
+    @Override public int obtenerLimitePrestamos() { return 4; }
+    @Override public String obtenerTipo() { return "Administrativo"; }
 
-    public String getArea() { 
-        return area; 
-    }
+    public String getArea() { return area; }
 }

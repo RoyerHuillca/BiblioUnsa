@@ -1,0 +1,7 @@
+Aquí va el driver de SQLite para Java (JDBC):  sqlite-jdbc-3.36.0.3.jar
+
+Descarga: busque "sqlite-jdbc 3.36.0.3" en mvnrepository.com o en Maven Central
+(org.xerial:sqlite-jdbc:3.36.0.3) y guarde el archivo .jar en esta carpeta (lib).
+
+- VS Code detecta automáticamente los .jar de esta carpeta (Referenced Libraries).
+- Sin el jar el programa funciona igual; solo las opciones de base de datos avisan que falta el driver.

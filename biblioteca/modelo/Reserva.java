@@ -18,23 +18,11 @@ public class Reserva implements Serializable {
         this.estado = EstadoReserva.PENDIENTE;
     }
 
-    public void atender() { 
-        this.estado = EstadoReserva.ATENDIDA; 
-    }
-    public void cancelar() { 
-        this.estado = EstadoReserva.CANCELADA; 
-    }
+    public void atender() { this.estado = EstadoReserva.ATENDIDA; }
+    public void cancelar() { this.estado = EstadoReserva.CANCELADA; }
 
-    public LocalDate getFechaReserva() { 
-        return fechaReserva; 
-    }
-    public EstadoReserva getEstado() { 
-        return estado; 
-    }
-    public Material getMaterial() { 
-        return material; 
-    }
-    public Usuario getUsuario() { 
-        return usuario; 
-    }
+    public LocalDate getFechaReserva() { return fechaReserva; }
+    public EstadoReserva getEstado() { return estado; }
+    public Material getMaterial() { return material; }
+    public Usuario getUsuario() { return usuario; }
 }

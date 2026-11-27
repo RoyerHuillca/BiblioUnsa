@@ -13,17 +13,9 @@ public class Revista extends Material {
         this.numero = numero;
     }
 
-    @Override public String obtenerTipo() { 
-        return "Revista"; 
-    }
+    @Override public String obtenerTipo() { return "Revista"; }
 
-    public String getIssn() { 
-        return issn; 
-    }
-    public int getVolumen() { 
-        return volumen; 
-    }
-    public int getNumero() { 
-        return numero; 
-    }
+    public String getIssn() { return issn; }
+    public int getVolumen() { return volumen; }
+    public int getNumero() { return numero; }
 }

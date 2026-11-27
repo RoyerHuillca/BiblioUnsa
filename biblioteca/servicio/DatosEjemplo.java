@@ -4,7 +4,7 @@ import biblioteca.modelo.*;
 
 import java.time.LocalDate;
 
-// Datos iniciales para probar el programa la primera vez que se ejecuta.
+/** Datos iniciales para probar el programa la primera vez que se ejecuta. */
 public class DatosEjemplo {
 
     public static Biblioteca crear() {

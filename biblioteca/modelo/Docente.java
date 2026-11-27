@@ -9,20 +9,9 @@ public class Docente extends Usuario {
         this.departamento = departamento;
     }
 
-    @Override 
-    public int obtenerPlazoPrestamo() { 
-        return 15; 
-    }
-    @Override 
-    public int obtenerLimitePrestamos() { 
-        return 5; 
-    }
-    @Override 
-    public String obtenerTipo() { 
-        return "Docente"; 
-    }
+    @Override public int obtenerPlazoPrestamo() { return 15; }
+    @Override public int obtenerLimitePrestamos() { return 5; }
+    @Override public String obtenerTipo() { return "Docente"; }
 
-    public String getDepartamento() { 
-        return departamento; 
-    }
+    public String getDepartamento() { return departamento; }
 }

@@ -9,20 +9,9 @@ public class Estudiante extends Usuario {
         this.escuela = escuela;
     }
 
-    @Override 
-    public int obtenerPlazoPrestamo() { 
-        return 7; 
-    }
-    @Override 
-    public int obtenerLimitePrestamos() { 
-        return 3; 
-    }
-    @Override 
-    public String obtenerTipo() { 
-        return "Estudiante"; 
-    }
+    @Override public int obtenerPlazoPrestamo() { return 7; }
+    @Override public int obtenerLimitePrestamos() { return 3; }
+    @Override public String obtenerTipo() { return "Estudiante"; }
 
-    public String getEscuela() { 
-        return escuela; 
-    }
+    public String getEscuela() { return escuela; }
 }

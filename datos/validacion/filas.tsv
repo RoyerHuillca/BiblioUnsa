@@ -1,0 +1,20 @@
+INSERTAR_MATERIAL	s:L001	s:Libro	s:Java: Cómo programar	s:Paul Deitel	i:2016	i:1	s:978-0134743356	s:Pearson	n:
+INSERTAR_MATERIAL	s:L002	s:Libro	s:Clean Code	s:Robert C. Martin	i:2008	i:0	s:978-0132350884	s:Prentice Hall	n:
+INSERTAR_MATERIAL	s:L003	s:Libro	s:Introduction to Algorithms	s:Thomas H. Cormen	i:2009	i:0	s:978-0262033848	s:MIT Press	n:
+INSERTAR_MATERIAL	s:L004	s:Libro	s:Los ríos profundos	s:José María Arguedas	i:1958	i:1	s:978-9972401145	s:Losada	n:
+INSERTAR_MATERIAL	s:L005	s:Libro	s:Cien años de soledad	s:Gabriel García Márquez	i:1967	i:1	s:978-0307474728	s:Sudamericana	n:
+INSERTAR_MATERIAL	s:T001	s:Tesis	s:Sistema de riego automatizado con IoT	s:Carlos Quispe Mamani	i:2023	i:1	s:Dr. Luis Paredes	s:Ingeniero de Sistemas	n:
+INSERTAR_MATERIAL	s:T002	s:Tesis	s:Análisis de sentimientos en redes sociales	s:Ana Condori Huamán	i:2024	i:1	s:Dra. Rosa Flores	s:Ingeniera de Sistemas	n:
+INSERTAR_MATERIAL	s:R001	s:Revista	s:Revista de Investigación UNSA	s:Editorial UNSA	i:2025	i:0	s:1234-5678	s:12	s:3
+INSERTAR_MATERIAL	s:R002	s:Revista	s:Ciencia y Tecnología Andina	s:Fondo Editorial	i:2025	i:1	s:8765-4321	s:5	s:1
+INSERTAR_USUARIO	s:A001	s:Administrativo	s:Julio Ramos Salas	s:jramos@unsa.edu.pe	s:Secretaría Académica
+INSERTAR_USUARIO	s:D001	s:Docente	s:Marco Aedo López	s:maedo@unsa.edu.pe	s:Ingeniería de Sistemas
+INSERTAR_USUARIO	s:E001	s:Estudiante	s:Royer Huillca Maqquera	s:rhuillca@unsa.edu.pe	s:Ingeniería de Sistemas
+INSERTAR_USUARIO	s:E002	s:Estudiante	s:María Torres Valdivia	s:mtorres@unsa.edu.pe	s:Ingeniería de Sistemas
+INSERTAR_PRESTAMO	i:1	s:E002	s:L001	s:2026-10-26	s:2026-11-02	s:2026-11-15	s:DEVUELTO
+INSERTAR_MULTA	i:1	i:13	d:13.0	i:1
+INSERTAR_PRESTAMO	i:2	s:A001	s:L003	s:2026-11-05	s:2026-11-15	n:	s:VENCIDO
+INSERTAR_PRESTAMO	i:3	s:D001	s:L002	s:2026-11-23	s:2026-12-08	n:	s:ACTIVO
+INSERTAR_PRESTAMO	i:4	s:E001	s:R001	s:2026-11-24	s:2026-12-01	n:	s:ACTIVO
+INSERTAR_RESERVA	i:1	s:E001	s:L003	s:2026-11-25	s:PENDIENTE
+INSERTAR_RESERVA	i:2	s:D001	s:L003	s:2026-11-25	s:CANCELADA
